@@ -144,11 +144,11 @@ with st.container():
     st.header("Making the same analysis for density:")
     code = '''
     for i in range(len(df)):
-    df["density (km²)"][i] = round(density_calculated[i])    
+        df["density (km²)"][i] = round(density_calculated[i])    
             '''
     st.code(code, language='python')
     for i in range(len(df)):
-    df["density (km²)"][i] = round(density_calculated[i]) 
+        df["density (km²)"][i] = round(density_calculated[i]) 
 with st.container():
     st.header("Making the same analysis for world percentage:")
     code = '''
@@ -163,11 +163,11 @@ with st.container():
     st.header("Now, converting the string type (object) to float64 type:")
     code = '''
     for i in range(len(df)):
-    df["world percentage"][i] = float(df["world percentage"][i][0:len(df["world percentage"][i])-1])
+        df["world percentage"][i] = float(df["world percentage"][i][0:len(df["world percentage"][i])-1])
     '''
     st.code(code, language='python')
     for i in range(len(df)):
-    df["world percentage"][i] = float(df["world percentage"][i][0:len(df["world percentage"][i])-1])
+        df["world percentage"][i] = float(df["world percentage"][i][0:len(df["world percentage"][i])-1])
 with st.container():
     st.header("Now, let's see how is the dataframe after the changes")
     code = '''
@@ -315,12 +315,19 @@ with st.container():
     columns = df.columns[4:13]
     total = []
     for col in range (len(columns)):
-    total.append(df[columns[col]].sum())
+        total.append(df[columns[col]].sum())
     years = [columns[i].split()[0] for i in range (len(columns))]
     total.reverse()
     years.reverse()
     '''
     population_23 = df["2023 population"].sum()
+    columns = df.columns[4:13]
+    total = []
+    for col in range (len(columns)):
+        total.append(df[columns[col]].sum())
+    years = [columns[i].split()[0] for i in range (len(columns))]
+    total.reverse()
+    years.reverse()
 with st.container():
     st.markdown("Creating lists with worlds sum populace and the columns(years)")
     code = '''
