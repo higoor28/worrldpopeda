@@ -61,17 +61,17 @@ with st.container():
     st.header("Making sure that the columns don't have null values:")
     code = '''
     for col in range(len(df.columns)):
-    if df[df.columns[col]].isnull().all() == False :
-        print(f"There are NOT null values in {df.columns[col]}")
-    else:
-        print(f"There ARE null values in {df.columns[col]}")
+        if df[df.columns[col]].isnull().all() == False :
+            print(f"There are NOT null values in {df.columns[col]}")
+        else:
+            print(f"There ARE null values in {df.columns[col]}")
             '''
     st.code(code, language='python')
     for col in range(len(df.columns)):
-    if df[df.columns[col]].isnull().all() == False :
-        st.write(f"There are NOT null values in {df.columns[col]}")
-    else:
-        st.write(f"There ARE null values in {df.columns[col]}")
+        if df[df.columns[col]].isnull().all() == False :
+            st.write(f"There are NOT null values in {df.columns[col]}")
+        else:
+            st.write(f"There ARE null values in {df.columns[col]}")
     st.markdown("As we can see, the dataset don't have any nullable value, so le'ts continue our analysis")
 with st.container():
     st.header("Now we will see some values of the dataframe:")
