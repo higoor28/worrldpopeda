@@ -181,7 +181,7 @@ with st.container():
     df_2["year"] = df_2["year"].astype(np.int64)
     df_2
 with st.container():
-    st.header("Now, with that new dataframe, let's make an analysis of world's populace splited by continent")
+    st.header("Now, with that new dataframe, let's make an analysis of world's populace splitted by continent")
     code = '''
     fig,ax = plt.subplots(figsize=(12,10))
     sns.barplot(data=df_2,x="year",y="population",hue="continent",errorbar=None)
@@ -194,18 +194,19 @@ with st.container():
     plt.title("World's population diference per continent")
     plt.grid() 
     st.pyplot(fig)
-    st.markdown("As we can see, by the plot, that the worlds populace are stopping to grow, even in Asia, the most populated continent.")
+    st.markdown("As we can see, by the plot, that the worlds populace are stopping to grow, even in Asia, the most populous continent.")
     st.markdown("Europe has the almost the same population since 70's")
     st.markdown("Africa overpassed Europe population in 2000 first decade")
     st.markdown("Oceania has the lowest population in all times")
 with st.container():
-    st.header("Now, let's see the India and China growth behaviour, once they're the most populated countries in Asia")
+    st.header("Now, let's see the India and China growth behaviour, once they're the most populous countries in Asia")
     code = '''
     df_india = df_2[df_2["country"] == "India"]
     df_china = df_2[df_2["country"] == "China"]
     df_china_india = pd.concat([df_china,df_india], join="inner")
     df_china_india
     '''
+    st.code(code, language='python')
     df_india = df_2[df_2["country"] == "India"]
     df_china = df_2[df_2["country"] == "China"]
     df_china_india = pd.concat([df_china,df_india], join="inner")
@@ -218,6 +219,7 @@ with st.container():
     plt.title("Comparative between China and India (The most populous countries)")
     plt.show()
     '''
+    st.code(code, language='python')
     fig, ax = plt.subplots()
     sns.barplot(data=df_china_india,x="year",y="population",hue="country")
     plt.title("Comparative between China and India (The most populous countries)")
@@ -232,10 +234,12 @@ with st.container():
     plt.title("Comparative between China and India")
     plt.show()
     '''
+    st.code(code, language='python')
     for_yticks = np.arange(550000000,1500000000,100000000)
     sns.barplot(data=df_china_india,x="year",y="population",hue="country")
     plt.title("Comparative between China and India")
     plt.show()
+    st.pyplot(fig)
     st.markdown("As we can see, the growth rate of India is higher, so the tendency is a overtake of India")
 with st.container():
     st.header("Now, let's make a comparison of the projections of China and India population if growth rate ramains the same:")
@@ -259,6 +263,7 @@ with st.container():
     india_projection_df.rename(columns={"index":"year",0:"population"},inplace=True)
     china_projection_df.rename(columns={"index":"year",0:"population"},inplace=True)
     '''
+    st.code(code, language='python')
     years = [i+1 for i in range(2022,2042)]
     india_projection = []
     start = df["2023 population"][0]
@@ -287,6 +292,7 @@ with st.container():
     ax.grid()
     plt.show()
     '''
+    st.code(code, language='python')
     fig,ax = plt.subplots()
     sns.lineplot(data=china_projection_df,y="population",x="year",label="China")
     sns.lineplot(data=india_projection_df,y="population",x="year",label="India")
@@ -307,6 +313,7 @@ with st.container():
     total.reverse()
     years.reverse()
     '''
+    st.code(code, language='python')
     population_23 = df["2023 population"].sum()
     columns = df.columns[4:13]
     total = []
@@ -323,6 +330,7 @@ with st.container():
     worlds_populace_columns.reverse()
     worlds_populace.reverse()
     '''
+    st.code(code, language='python')
     worlds_populace = [df[df.columns[i]].sum() for i in range(4,13)]
     worlds_populace_columns = [int(df.columns[i].split()[0]) for i in range(4,13)]
     worlds_populace_columns.reverse()
@@ -339,6 +347,7 @@ with st.container():
     worlds_predicted_populace_df.columns = ["year","population"]
     worlds_predicted_populace_df
     '''
+    st.code(code, language='python')
     world_growth_rate = 1+(worlds_populace[len(worlds_populace)-2]/worlds_populace[len(worlds_populace)-1]/100)
     for i in range (21):
         worlds_populace.append(round(worlds_populace[len(worlds_populace)-1]*world_growth_rate))
@@ -356,6 +365,7 @@ with st.container():
     plt.title("World's population + predicted population based in the same growth rate since 2023")
     plt.show()
     '''
+    st.code(code, language='python')
     fig, ax = plt.subplots()
     sns.barplot(data=worlds_predicted_populace_df,x="year",y="population")
     xtks = plt.xticks()
@@ -375,6 +385,7 @@ with st.container():
     least_countries = [df_least_density["country"][i] for i in range (len(df_least_density))]
     most_countries = [df_most_density["country"][i] for i in range (len(df_most_density))]
     '''
+    st.code(code, language='python')
     df_most_density = df[df["rank"] <= 20]
     df_least_density = df[df["rank"] >= 215].reset_index()
     df_most_density = df.sort_values(ascending=False,by="density (km²)")
@@ -401,6 +412,7 @@ with st.container():
     ax[1].grid()
     plt.tight_layout()
     '''
+    st.code(code, language='python')
     fig,ax = plt.subplots(nrows=2,figsize=(8,10))
     ax[0].bar(x=df_most_density["country"],height=df_most_density["density (km²)"])
     ax[1].bar(x=df_least_density["country"],height=df_least_density["density (km²)"],color="orange")
@@ -435,6 +447,7 @@ with st.container():
     plt.tight_layout()
     plt.show()
     '''
+    st.code(code, language='python')
     df_least_area = df.sort_values(by="area (km²)",ascending=True)[0:20].reset_index()
     df_most_area = df.sort_values(by="area (km²)",ascending=False)[0:20].reset_index()
     least_area_country = [df_least_area["country"][i] for i in range(len(df_least_area))]
@@ -469,6 +482,7 @@ with st.container():
     plt.tight_layout()
     plt.show()
     '''
+    st.code(code, language='python')
     df_2_sorted = df_2[df_2["year"] == 2023].sort_values(by="population",ascending=False).reset_index()
     df_2_sorted_most = df_2_sorted[0:20]
     df_2_sorted_least = df_2_sorted[len(df_2_sorted)-20:len(df_2_sorted)].reset_index()
