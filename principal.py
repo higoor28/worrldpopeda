@@ -141,6 +141,7 @@ with st.container():
     world_percentage = {str(df["world percentage"][i][0:len(df["world percentage"][i])-1]):(df["2023 population"][i] / population_23 *100) for i in range(len(df))}   
             '''
     st.code(code, language='python')
+    population_23 = df["2023 population"].sum()
     world_percentage = {df["world percentage"][i][0:len(df["world percentage"][i])-1]:(df["2023 population"][i] / population_23 *100) for i in range(len(df))} 
     world_percentage
 with st.container():
