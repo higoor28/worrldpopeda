@@ -282,6 +282,9 @@ with st.container():
     india_projection_df.rename(columns={"index":"year",0:"population"},inplace=True)
     china_projection_df.rename(columns={"index":"year",0:"population"},inplace=True)
 with st.container():
+    india_projection_df
+    china_projection_df
+with st.container():
     st.markdown("Let's plot that information:")
     code = '''
     fig,ax = plt.subplots()
