@@ -32,7 +32,7 @@ with st.container():
     df.head()
             '''
     st.code(code, language='python')
-    df.head()
+    df[0:5]
 with st.container():
     st.header("Seeing the dataframe shape:")
     code = '''
@@ -41,7 +41,7 @@ with st.container():
     st.code(code, language='python')
     df.shape
 with st.container():
-    st.header("seeing null count and dtype of the columns:")
+    st.header("Seeing null count and dtype of the columns:")
     code = '''
     df.info()
             '''
@@ -62,7 +62,7 @@ with st.container():
             st.write(f"There are NOT null values in {df.columns[col]}")
         else:
             st.write(f"There ARE null values in {df.columns[col]}")
-    st.markdown("As we can see, the dataset don't have any nullable value, so le'ts continue our analysis")
+    st.markdown("As we can see, the dataset don't have any nullable value, so let's continue our analysis.")
 with st.container():
     st.header("Now we will see some values of the dataframe:")
     code = '''
@@ -70,9 +70,9 @@ with st.container():
             '''
     st.code(code, language='python')
     df
-    st.markdown("There are so many higher values from population for China and India for exemple in comparisson of the anothers countries. So is expected that there are some outliers.")
+    st.markdown("There are so many higher values from population for China and India, for exemple, in comparisson of the anothers countries. So is expected that there are some outliers.")
 with st.container():
-    st.header("seeing that outliers in a boxplot:")
+    st.header("Seeing that outliers in a boxplot:")
     code = '''
     fig, ax = plt.subplots()
     sns.boxplot(data=df)
@@ -96,12 +96,9 @@ with st.container():
     st.markdown("Comparing the boxplot with the dataframe values, we can see that the data obey the projections")
 with st.container():
     st.header("Now we will make sure that some columns have consistent values:")
-    st.markdown("we will create a dictionary for each column  with dataset and calculated values and make the comparison:")
+    st.markdown("We will create a dictionary for each column with dataset and calculated values and make the comparison:")
 with st.container():
-    st.markdown("First we will work on growth rate:")
-    st.markdown("we will create a dictionary for")
-with st.container():
-    st.header("seeing that outliers in a boxplot:")
+    st.header("Making the analysis for growth rate:")
     code = '''
     growth_rate_calculated = [str(round(((1 - (df["2022 population"][i] / df["2023 population"][i])) * 100),2))+"%" for i in range(len(df))]
     growth_rate_df = [df["growth rate"][i] for i in range(len(df))]
@@ -120,13 +117,13 @@ with st.container():
     code = '''
     density_df = [df["density (km²)"][i] for i in range(len(df))]
     density_calculated = [df["2023 population"][i]/df["area (km²)"][i] for i in range(len(df))]
-    density_comparison = {density_df[i]:density_calculated[i] for i in range(len(df))}
+    density_comparison = {str(density_df[i]):density_calculated[i] for i in range(len(df))}
     density_comparison       
             '''
     st.code(code, language='python')
     density_df = [df["density (km²)"][i] for i in range(len(df))]
     density_calculated = [df["2023 population"][i]/df["area (km²)"][i] for i in range(len(df))]
-    density_comparison = {density_df[i]:density_calculated[i] for i in range(len(df))}
+    density_comparison = {str(density_df[i]):density_calculated[i] for i in range(len(df))}
     density_comparison  
 with st.container():
     st.markdown("Some values are inconsistent, so we will fix them:")
@@ -142,10 +139,10 @@ with st.container():
 with st.container():
     st.header("Making the same analysis for world percentage:")
     code = '''
-    world_percentage = {float(df["world percentage"][i][0:len(df["world percentage"][i])-1]):(df["2023 population"][i] / population_23 *100) for i in range(len(df))}   
+    world_percentage = {str(df["world percentage"][i][0:len(df["world percentage"][i])-1]):(df["2023 population"][i] / population_23 *100) for i in range(len(df))}   
             '''
     st.code(code, language='python')
-    world_percentage = {float(df["world percentage"][i][0:len(df["world percentage"][i])-1]):(df["2023 population"][i] / population_23 *100) for i in range(len(df))} 
+    world_percentage = {str(df["world percentage"][i][0:len(df["world percentage"][i])-1]):(df["2023 population"][i] / population_23 *100) for i in range(len(df))} 
     world_percentage
 with st.container():
     st.markdown("The values are almost equivalent, so we can let the original values")
