@@ -128,7 +128,6 @@ with st.container():
 with st.container():
     st.markdown("Some values are inconsistent, so we will fix them:")
 with st.container():
-    st.header("Making the same analysis for density:")
     code = '''
     for i in range(len(df)):
         df["density (km²)"][i] = round(density_calculated[i])    
@@ -142,7 +141,7 @@ with st.container():
     world_percentage = {str(df["world percentage"][i][0:len(df["world percentage"][i])-1]):(df["2023 population"][i] / population_23 *100) for i in range(len(df))}   
             '''
     st.code(code, language='python')
-    world_percentage = {str(df["world percentage"][i][0:len(df["world percentage"][i])-1]):(df["2023 population"][i] / population_23 *100) for i in range(len(df))} 
+    world_percentage = {df["world percentage"][i][0:len(df["world percentage"][i])-1]:(df["2023 population"][i] / population_23 *100) for i in range(len(df))} 
     world_percentage
 with st.container():
     st.markdown("The values are almost equivalent, so we can let the original values")
