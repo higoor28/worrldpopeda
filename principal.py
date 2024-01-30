@@ -4,16 +4,6 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 import numpy as np
 
-
-progress_text = "Loading libraries, reading codes, data and plotting charts. Please wait."
-my_bar = st.progress(0, text=progress_text)
-
-for percent_complete in range(100):
-    time.sleep(0.05)
-    my_bar.progress(percent_complete + 1, text=progress_text)
-time.sleep(0.5)
-my_bar.empty()
-
 df = pd.read_csv("world_population_data.csv")
 st.title(" Welcome to Dashboard of world population EDA :bar_chart: :world_map: ")
 st.write("by: H.Marques")
