@@ -247,28 +247,6 @@ with st.container():
     st.pyplot(fig)
     st.markdown("As we can see, The populace of India grew more than China in at least 10 last years, and in 2023 became the most populous country in world ")
 with st.container():
-    st.header("Now, let's see the linear growth of that 2 most populous countries:")
-    code = '''
-    for_yticks = np.arange(550000000,1500000000,100000000)
-    sns.lmplot(data=df_china_india,x="year",y="population",hue="country")
-    plt.title("Showing when the population of India will overpass China's population")
-    plt.yticks(for_yticks)
-    plt.xticks(np.arange(1970,2040,10),np.arange(1970,2040,10))
-    plt.grid()
-    plt.show()
-    '''
-    st.code(code, language='python')
-    for_yticks = np.arange(550000000,1500000000,100000000)
-    fig,ax = plt.subplots()
-    sns.lmplot(data=df_china_india,x="year",y="population",hue="country")
-    plt.title("Showing when the population of India will overpass China's population")
-    plt.yticks(for_yticks)
-    plt.xticks(np.arange(1970,2040,10),np.arange(1970,2040,10))
-    plt.grid()
-    plt.show()
-    st.pyplot(fig)
-    st.markdown("As we can see, the growth rate of India is higher, so the tendency is a overtake of India")
-with st.container():
     st.header("Now, let's make a comparison of the projections of China and India population if growth rate ramains the same:")
     st.markdown("First let's preparate the data:")
     code = '''
