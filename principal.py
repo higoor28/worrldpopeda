@@ -4,6 +4,8 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 import numpy as np
 
+plt.style.use('dark_background')
+
 df = pd.read_csv("world_population_data.csv")
 st.title(" Welcome to Dashboard of world population EDA :bar_chart: :world_map: ")
 st.write("by: H.Marques")
