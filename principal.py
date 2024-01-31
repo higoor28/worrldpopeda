@@ -38,10 +38,10 @@ with st.container():
 with st.container():
     st.header("Seeing null count and dtype of the columns:")
     code = '''
-    st.write(df.info)
+    df.info()
             '''
     st.code(code, language='python')
-    df.info()
+    st.write(df.info())
 with st.container():
     st.header("Making sure that the columns don't have null values:")
     code = '''
