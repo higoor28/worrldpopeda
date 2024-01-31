@@ -282,7 +282,9 @@ with st.container():
     india_projection_df.rename(columns={"index":"year",0:"population"},inplace=True)
     china_projection_df.rename(columns={"index":"year",0:"population"},inplace=True)
 with st.container():
+    st.markdown("India dataset:")
     india_projection_df
+    st.markdown("China dataset:")
     china_projection_df
 with st.container():
     st.markdown("Let's plot that information:")
