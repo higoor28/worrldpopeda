@@ -234,7 +234,6 @@ with st.container():
     df_china_india
     st.markdown("Now, we have a new dataframe with China and Asia only information")
 with st.container():
-    st.header("Now, let's see the India and China growth behaviour, once they're the most populated countries in Asia")
     code = '''
     sns.barplot(data=df_china_india,x="year",y="population",hue="country")
     plt.title("Comparative between China and India (The most populous countries)")
@@ -260,6 +259,7 @@ with st.container():
     '''
     st.code(code, language='python')
     for_yticks = np.arange(550000000,1500000000,100000000)
+    fig,ax = plt.subplots()
     sns.lmplot(data=df_china_india,x="year",y="population",hue="country")
     plt.title("Showing when the population of India will overpass China's population")
     plt.yticks(for_yticks)
