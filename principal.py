@@ -431,5 +431,7 @@ with st.container():
     plt.show()
     st.pyplot(fig)
 with st.container():
-    <div class="flourish-embed flourish-bar-chart-race" data-src="visualisation/16650032"><script src="https://public.flourish.studio/resources/embed.js"></script></div>
+    video_file = open('world_pop_mp4.mp4', 'rb')
+    video_bytes = video_file.read()
+    st.video(video_bytes)
     
