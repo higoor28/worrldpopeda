@@ -210,10 +210,13 @@ with st.container():
     plt.show()
     '''
     st.code(code, language='python')
-    fig,ax = plt.subplots(figsize=(12,10))
-    sns.barplot(data=df_2,x="year",y="population",hue="continent",errorbar=None)
-    plt.title("World's population diference per continent")
-    plt.grid() 
+    df_continent_sum = pd.pivot_table(data=df,values=columns,index="continent",aggfunc="sum").reset_index()
+    fig,ax = plt.subplots(nrows=len(columns),figsize=(25,25))
+    for i in range (len(columns)):
+        ax[i].pie(df_continent_sum[df_continent_sum.columns[i+1]],labels=df_continent_sum["continent"],shadow=True,autopct="%1.1f%%")
+        ax[i].set_title(f"{df_continent_sum.columns[i+1]}:")
+    plt.tight_layout()
+    plt.show() 
     st.pyplot(fig)
     
 with st.container():
