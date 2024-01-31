@@ -206,7 +206,7 @@ with st.container():
     df_continent_sum = pd.pivot_table(data=df,values=columns,index="continent",aggfunc="sum").reset_index()
     fig,ax = plt.subplots(nrows=len(columns),figsize=(25,25))
     for i in range (len(columns)):
-        ax[i].pie(df_continent_sum[df_continent_sum.columns[i+1]],labels=df_continent_sum["continent"],shadow=True,autopct="%1.1f%%")
+        ax[i].pie(df_continent_sum[df_continent_sum.columns[i+1]],labels=df_continent_sum["continent"],shadow=True,autopct="%1.1f%%",pctdistance=1.21, labeldistance=1.50)
         ax[i].set_title(f"{df_continent_sum.columns[i+1]}:")
     plt.tight_layout()
     plt.show()
@@ -215,7 +215,7 @@ with st.container():
     df_continent_sum = pd.pivot_table(data=df,values=columns,index="continent",aggfunc="sum").reset_index()
     fig,ax = plt.subplots(nrows=len(columns),figsize=(25,25))
     for i in range (len(columns)):
-        ax[i].pie(df_continent_sum[df_continent_sum.columns[i+1]],labels=df_continent_sum["continent"],shadow=True,autopct="%1.1f%%")
+        ax[i].pie(df_continent_sum[df_continent_sum.columns[i+1]],labels=df_continent_sum["continent"],shadow=True,autopct="%1.1f%%",pctdistance=1.21, labeldistance=1.50)
         ax[i].set_title(f"{df_continent_sum.columns[i+1]}:")
     plt.tight_layout()
     plt.show() 
