@@ -34,11 +34,11 @@ with st.container():
     df.shape
             '''
     st.code(code, language='python')
-    df.shape
+    st.write(df.shape)
 with st.container():
     st.header("Seeing null count and dtype of the columns:")
     code = '''
-    df.info()
+    st.write(df.info)
             '''
     st.code(code, language='python')
     df.info()
