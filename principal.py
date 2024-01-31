@@ -314,7 +314,7 @@ with st.container():
     china_projection.append(start)
     for i in range (1,20):
         china_projection.append(round(china_projection[i-1]*(1+float(df["growth rate"][1][0:len(df["growth rate"][1])-1])/100)))
-    st.write(china_projection["year"])
+   # st.write(china_projection["year"])
     st.write(china_projection["population"])
     st.write(india_projection["year"])
     st.write(india_projection["population"])
