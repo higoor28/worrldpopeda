@@ -29,13 +29,6 @@ with st.container():
     st.code(code, language='python')
     df
 with st.container():
-    st.header("Reading the 5 first values:")
-    code = '''
-    df.head()
-            '''
-    st.code(code, language='python')
-    df[0:5]
-with st.container():
     st.header("Seeing the dataframe shape:")
     code = '''
     df.shape
