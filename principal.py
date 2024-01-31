@@ -36,13 +36,6 @@ with st.container():
     st.code(code, language='python')
     st.write(df.shape)
 with st.container():
-    st.header("Seeing null count and dtype of the columns:")
-    code = '''
-    df.info()
-            '''
-    st.code(code, language='python')
-    df.info()
-with st.container():
     st.header("Making sure that the columns don't have null values:")
     code = '''
     for col in range(len(df.columns)):
