@@ -287,6 +287,10 @@ with st.container():
     st.markdown("China dataset:")
     china_projection_df
 with st.container():
+    st.markdown("Let's see information of the datasets")
+    india_projection_df.info()
+    china_projection_df.info()
+with st.container():
     st.markdown("Let's plot that information:")
     code = '''
     fig,ax = plt.subplots()
