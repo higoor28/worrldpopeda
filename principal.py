@@ -314,20 +314,10 @@ with st.container():
     china_projection.append(start)
     for i in range (1,20):
         china_projection.append(round(china_projection[i-1]*(1+float(df["growth rate"][1][0:len(df["growth rate"][1])-1])/100)))
-    india_projection_dict = {years[i]:india_projection[i] for i in range(len(years))}
-    china_projection_dict = {years[i]:china_projection[i] for i in range(len(years))}
-    india_projection_df = pd.DataFrame.from_dict(india_projection_dict,orient="index").reset_index()
-    china_projection_df = pd.DataFrame.from_dict(china_projection_dict,orient="index").reset_index()
-    india_projection_df.rename(columns={"index":"year",0:"population"},inplace=True)
-    china_projection_df.rename(columns={"index":"year",0:"population"},inplace=True)
-    fig,ax = plt.subplots()
-    ax.plot(y=china_projection_df["population"],x=china_projection_df["year"])
-    ax.plot(y=india_projection_df["population"],x=india_projection_df["year"])
-    ax.set_title("The population of China and India comparison if the growth rate remains the same")
-    ax.set_xticks(np.arange(2020,2050,5),np.arange(2020,2050,5))
-    ax.grid()
-    plt.show()
-    st.pyplot(fig)
+    st.write(china_projection["year"])
+    st.write(china_projection["population"])
+    st.write(india_projection["year"])
+    st.write(india_projection["population"])
 
 with st.container():
     st.header("Now, let's see how the world population grows")
