@@ -215,12 +215,9 @@ with st.container():
     plt.title("World's population diference per continent")
     plt.grid() 
     st.pyplot(fig)
-    st.markdown("As we can see, by the plot, that the worlds populace are stopping to grow, even in Asia, the most populous continent.")
-    st.markdown("Europe has the almost the same population since 70's")
-    st.markdown("Africa overpassed Europe population in 2000 first decade")
-    st.markdown("Oceania has the lowest population in all times")
+    
 with st.container():
-    st.header("Now, let's see the India and China growth behaviour, once they're the most populous countries in Asia")
+    st.header("Now, let's see the India and China growth behavior, once they're the most populous countries in Asia")
     code = '''
     df_india = df_2[df_2["country"] == "India"]
     df_china = df_2[df_2["country"] == "China"]
