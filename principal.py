@@ -298,28 +298,12 @@ with st.container():
     plt.show()
     '''
     st.code(code, language='python')
-    years = [i+1 for i in range(2022,2042)]
-    india_projection = []
-    start = df["2023 population"][0]
-    india_projection.append(start)
-    for i in range (1,20):
-        india_projection.append(round(india_projection[i-1]*(1+float(df["growth rate"][0][0:len(df["growth rate"][0])-1])/100)))
-    china_projection = []
-    start = df["2023 population"][1]
-    china_projection.append(start)
-    for i in range (1,20):
-        china_projection.append(round(china_projection[i-1]*(1+float(df["growth rate"][1][0:len(df["growth rate"][1])-1])/100)))
-    india_projection_dict = {years[i]:india_projection[i] for i in range(len(years))}
-    china_projection_dict = {years[i]:china_projection[i] for i in range(len(years))}
-    india_projection_df = pd.DataFrame.from_dict(india_projection_dict,orient="index").reset_index()
-    china_projection_df = pd.DataFrame.from_dict(china_projection_dict,orient="index").reset_index()
-    india_projection_df.rename(columns={"index":"year",0:"population"},inplace=True)
-    china_projection_df.rename(columns={"index":"year",0:"population"},inplace=True)
+    fig,ax = plt.subplots()
     sns.lineplot(data=china_projection_df,y="population",x="year",label="China")
     sns.lineplot(data=india_projection_df,y="population",x="year",label="India")
-    plt.title("The population of China and India comparison if the growth rate remains the same")
-    plt.xticks(np.arange(2020,2050,5),np.arange(2020,2050,5))
-    plt.grid()
+    ax.set_title("The population of China and India comparison if the growth rate remains the same")
+    ax.set_xticks(np.arange(2020,2050,5),np.arange(2020,2050,5))
+    ax.grid()
     plt.show()
     st.pyplot(fig)
 
