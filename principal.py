@@ -305,7 +305,7 @@ with st.container():
     st.code(code, language='python')
     fig,ax = plt.subplots()
     ax.plot(y=china_projection_df["population"],x=china_projection_df["year"])
-    ax.plot(y=india_projection_df["population"],x=india_projection_df["year"])
+    #ax.plot(y=india_projection_df["population"],x=india_projection_df["year"])
     ax.set_title("The population of China and India comparison if the growth rate remains the same")
     ax.set_xticks(np.arange(2020,2050,5),np.arange(2020,2050,5))
     ax.grid()
