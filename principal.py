@@ -324,6 +324,13 @@ with st.container():
     china_projection_df["population"]
     india_projection_df["year"]
     india_projection_df["population"]
+    fig,ax = plt.subplots()
+    sns.lineplot(data=china_projection_df,y="population",x="year",label="China",ax=ax)
+    sns.lineplot(data=india_projection_df,y="population",x="year",label="India",ax=ax)
+    ax.set_title("The population of China and India comparison if the growth rate remains the same")
+    ax.set_xticks(np.arange(2020,2050,5),np.arange(2020,2050,5))
+    ax.grid()
+    plt.show()
 
 with st.container():
     st.header("Now, let's see how the world population grows")
