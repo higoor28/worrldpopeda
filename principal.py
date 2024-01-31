@@ -199,6 +199,27 @@ with st.container():
     st.markdown("Africa overpassed Europe population in 2000 first decade")
     st.markdown("Oceania has the lowest population in all times")
 with st.container():
+    st.header("Another perspective, seeing the proportion of population splitted by continent but a % of total ")
+    code = '''
+    df_continent_sum = pd.pivot_table(data=df,values=columns,index="continent",aggfunc="sum").reset_index()
+    fig,ax = plt.subplots(nrows=len(columns),figsize=(25,25))
+    for i in range (len(columns)):
+        ax[i].pie(df_continent_sum[df_continent_sum.columns[i+1]],labels=df_continent_sum["continent"],shadow=True,autopct="%1.1f%%")
+        ax[i].set_title(f"{df_continent_sum.columns[i+1]}:")
+    plt.tight_layout()
+    plt.show()
+    '''
+    st.code(code, language='python')
+    fig,ax = plt.subplots(figsize=(12,10))
+    sns.barplot(data=df_2,x="year",y="population",hue="continent",errorbar=None)
+    plt.title("World's population diference per continent")
+    plt.grid() 
+    st.pyplot(fig)
+    st.markdown("As we can see, by the plot, that the worlds populace are stopping to grow, even in Asia, the most populous continent.")
+    st.markdown("Europe has the almost the same population since 70's")
+    st.markdown("Africa overpassed Europe population in 2000 first decade")
+    st.markdown("Oceania has the lowest population in all times")
+with st.container():
     st.header("Now, let's see the India and China growth behaviour, once they're the most populous countries in Asia")
     code = '''
     df_india = df_2[df_2["country"] == "India"]
@@ -229,15 +250,19 @@ with st.container():
 with st.container():
     st.header("Now, let's see the linear growth of that 2 most populous countries:")
     code = '''
-    for_yticks = np.arange(550000000,1500000000,100000000)
-    sns.barplot(data=df_china_india,x="year",y="population",hue="country")
-    plt.title("Comparative between China and India")
+    sns.lmplot(data=df_china_india,x="year",y="population",hue="country")
+    plt.title("Showing when the population of India will overpass China's population")
+    plt.yticks(for_yticks)
+    plt.xticks(np.arange(1970,2040,10),np.arange(1970,2040,10))
+    plt.grid()
     plt.show()
     '''
     st.code(code, language='python')
-    for_yticks = np.arange(550000000,1500000000,100000000)
-    sns.barplot(data=df_china_india,x="year",y="population",hue="country")
-    plt.title("Comparative between China and India")
+    sns.lmplot(data=df_china_india,x="year",y="population",hue="country")
+    plt.title("Showing when the population of India will overpass China's population")
+    plt.yticks(for_yticks)
+    plt.xticks(np.arange(1970,2040,10),np.arange(1970,2040,10))
+    plt.grid()
     plt.show()
     st.pyplot(fig)
     st.markdown("As we can see, the growth rate of India is higher, so the tendency is a overtake of India")
@@ -286,10 +311,6 @@ with st.container():
     india_projection_df
     st.markdown("China dataset:")
     china_projection_df
-with st.container():
-    st.markdown("Let's see information of the datasets")
-    india_projection_df.info()
-    china_projection_df.info()
 with st.container():
     st.markdown("Let's plot that information:")
     code = '''
