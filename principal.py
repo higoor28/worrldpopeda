@@ -314,10 +314,16 @@ with st.container():
     china_projection.append(start)
     for i in range (1,20):
         china_projection.append(round(china_projection[i-1]*(1+float(df["growth rate"][1][0:len(df["growth rate"][1])-1])/100)))
-    china_projection["year"]
-    china_projection["population"]
-    india_projection["year"]
-    india_projection["population"]
+    india_projection_dict = {years[i]:india_projection[i] for i in range(len(years))}
+    china_projection_dict = {years[i]:china_projection[i] for i in range(len(years))}
+    india_projection_df = pd.DataFrame.from_dict(india_projection_dict,orient="index").reset_index()
+    china_projection_df = pd.DataFrame.from_dict(china_projection_dict,orient="index").reset_index()
+    india_projection_df.rename(columns={"index":"year",0:"population"},inplace=True)
+    china_projection_df.rename(columns={"index":"year",0:"population"},inplace=True)
+    china_projection_df["year"]
+    china_projection_df["population"]
+    india_projection_df["year"]
+    india_projection_df["population"]
 
 with st.container():
     st.header("Now, let's see how the world population grows")
